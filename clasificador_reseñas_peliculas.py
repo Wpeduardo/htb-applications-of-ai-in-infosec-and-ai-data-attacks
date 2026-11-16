@@ -22,7 +22,7 @@ from sklearn.pipeline import Pipeline
 nltk.download("punkt_tab", quiet=True)
 nltk.download("stopwords", quiet=True)
 
-# Se conservan las negaciones: son relevantes para el sentimiento
+# Se conservan las negaciones: son relevantes para el contextos
 STOP_WORDS = set(stopwords.words("english")) - {"not", "no", "nor"}
 STEMMER = PorterStemmer()
 
