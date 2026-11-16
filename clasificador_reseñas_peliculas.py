@@ -1,6 +1,8 @@
 """Clasificación binaria de reseñas de peliculas con Naive Bayes Multinomial.
 Preprocesa los textos, busca el mejor valor de alpha con GridSearchCV, evalúa el modelo con el
 conjunto de prueba y lo guarda con joblib.
+Uso:
+    python clasificador_sentimiento.py <carpeta_con_train_y_test_json>
 """
 import re
 import sys
