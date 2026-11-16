@@ -1,10 +1,6 @@
 """Clasificación binaria de reseñas de peliculas con Naive Bayes Multinomial.
-
 Preprocesa los textos, busca el mejor valor de alpha con GridSearchCV, evalúa el modelo con el
 conjunto de prueba y lo guarda con joblib.
-
-Uso:
-    python clasificador_sentimiento.py <carpeta_con_train_y_test_json>
 """
 import re
 import sys
@@ -59,7 +55,7 @@ def main() -> None:
     best_model = grid_search.best_estimator_
     print("Mejor alpha:", grid_search.best_params_["classifier__alpha"])
 
-    # Evaluación con el conjunto de prueba
+    # Evaluación con el subdataset de prueba
     df_test = pd.read_json(carpeta / "test.json")
     X_test = preprocesamiento(df_test["text"])
     y_test = df_test["label"]
@@ -70,7 +66,7 @@ def main() -> None:
     print("Recall   :", recall_score(y_test, predicciones))
     print("F1-score :", f1_score(y_test, predicciones))
 
-    # Guardar el Pipeline entrenado (vectorizador + clasificador)
+    # Guardar el Pipeline entrenado 
     joblib.dump(best_model, "clasificador.joblib")
     print("Modelo guardado en clasificador.joblib")
 
