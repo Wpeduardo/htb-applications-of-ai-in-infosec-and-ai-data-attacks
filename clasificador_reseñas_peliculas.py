@@ -32,7 +32,7 @@ STEMMER = PorterStemmer()
 def preprocesamiento(serie: pd.Series) -> pd.Series:
     """Minúsculas, limpieza de caracteres, tokenización, stop words y stemming."""
     serie = serie.str.lower()
-    serie = serie.apply(lambda x: re.sub(r"[^a-z\s$!]", "", x))
+    serie = serie.apply(lambda x: re.sub(r"[^a-z\s$]", "", x))
     serie = serie.apply(word_tokenize)
     serie = serie.apply(lambda x: [STEMMER.stem(w) for w in x if w not in STOP_WORDS])
     return serie.apply(" ".join)
