@@ -34,7 +34,6 @@ def preprocesamiento(serie: pd.Series) -> pd.Series:
     """Minúsculas, limpieza de caracteres, tokenización, stop words y stemming."""
     serie = serie.str.lower()
     serie = serie.apply(lambda x: re.sub(r"[^a-z\s$]", "", x))
-    # preserve_line=True evita dividir en oraciones (y el timeout de NLTK con textos largos)
     serie = serie.apply(lambda x: word_tokenize(x, preserve_line=True))
     serie = serie.apply(lambda x: [STEMMER.stem(w) for w in x if w not in STOP_WORDS])
     return serie.apply(" ".join)
